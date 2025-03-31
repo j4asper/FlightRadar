@@ -1,5 +1,6 @@
 ﻿using FlightRadar.Client;
 using FlightRadar.Client.Models;
+using FlightRadar.Client.Models.V1;
 
 namespace FlightRadar.Demo;
 
@@ -23,6 +24,14 @@ class FlightRadarDemo
         var airport = await flightRadarClient.V1.GetAirportInfoByCodeAsync("ESSA");
         Console.WriteLine($"Airport: {airport?.Name}");
         // Output: Airport: Stockholm Arlanda Airport
+        
+        // Use Full Flight Positions Endpoint
+        var fullFlightPositions = await flightRadarClient.V1.GetFullFlightPositionsAsync(new FlightPositionsFilter()
+        {
+            Callsigns = ["AFR1463"]
+        });
+        Console.WriteLine($"Flight Altitude: {fullFlightPositions?.First().Altitude}");
+        // Output: Flight Altitude: 37000
         
         // Use Flight Tracks Endpoint
         var flightTracks = await flightRadarClient.V1.GetFlightTracksByFlightIdAsync("34242a02");

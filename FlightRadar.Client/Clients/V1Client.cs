@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using FlightRadar.Client.Constants;
 using FlightRadar.Client.Extensions;
 using FlightRadar.Client.Models;
+using FlightRadar.Client.Models.V1;
 using FlightRadar.Entities.Models.V1;
 
 namespace FlightRadar.Client.Clients;
@@ -44,7 +45,7 @@ public class V1Client : IDisposable
     /// </summary>
     /// <param name="code">ICAO or IATA code of the airport</param>
     /// <returns>Airport?</returns>
-    public async Task<Airport?> GetDetailedAirportInfoByCodeAsync(string code)
+    public async Task<Airport?> GetAirportInfoByCodeAsync(string code)
     {
         var response = await _httpClient.GetAsync($"/api/static/airports/{code}/light");
 
@@ -61,7 +62,7 @@ public class V1Client : IDisposable
     /// </summary>
     /// <param name="code">ICAO or IATA code of the airport</param>
     /// <returns>AirportDetailed?</returns>
-    public async Task<AirportDetailed?> GetAirportInfoByCodeAsync(string code)
+    public async Task<AirportDetailed?> GetDetailedAirportInfoByCodeAsync(string code)
     {
         var response = await _httpClient.GetAsync($"/api/static/airports/{code}/full");
 
@@ -73,6 +74,26 @@ public class V1Client : IDisposable
         return null;
     }
     
+    /// <summary>
+    /// Returns comprehensive real-time information on aircraft flight movements, including flight and aircraft details such as origin, destination, and aircraft type. At least one query parameter is required to retrieve data.
+    /// </summary>
+    /// <param name="filter">Filter to use for the flight positions result</param>
+    /// <returns>FlightPosition?</returns>
+    public async Task<IReadOnlyList<FlightPosition>?> GetFullFlightPositionsAsync(FlightPositionsFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/live/flight-positions/full?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<FullFlightPositionsResponseModel>();
+
+            return data?.Data;
+        }
+        
+        return null;
+    }
     
     /// <summary>
     /// Returns a flight with positional tracks for both live and historical flights based on the FR24 flight ID. Availability of historical data depends on the user's subscription plan, with a maximum limit of up to 3 years.
