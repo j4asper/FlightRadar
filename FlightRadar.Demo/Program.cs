@@ -21,7 +21,7 @@ class FlightRadarDemo
         
         // Use Airports Light Endpoint
         var airport = await flightRadarClient.V1.GetAirportInfoByCodeAsync("ESSA");
-        Console.WriteLine($"Airport: {airportDetailed?.Name}");
+        Console.WriteLine($"Airport: {airport?.Name}");
         // Output: Airport: Stockholm Arlanda Airport
         
         // Use Flight Tracks Endpoint
