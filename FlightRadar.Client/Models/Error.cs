@@ -1,4 +1,4 @@
-namespace FlightRadar.Entities.Models;
+namespace FlightRadar.Client.Models;
 
 public class Error
 {
