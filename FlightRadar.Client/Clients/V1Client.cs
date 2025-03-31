@@ -117,6 +117,27 @@ public class V1Client : IDisposable
     }
     
     /// <summary>
+    /// Returns number of live aircraft flight positions.
+    /// </summary>
+    /// <param name="filter">Filter to use for the flight positions result</param>
+    /// <returns>int?</returns>
+    public async Task<int?> GetFlightPositionsCountAsync(FlightPositionsFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/live/flight-positions/count?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<FlightPositionsCountResponseModel>();
+
+            return data?.Data.First().RecordCount;
+        }
+        
+        return null;
+    }
+    
+    /// <summary>
     /// Returns a flight with positional tracks for both live and historical flights based on the FR24 flight ID. Availability of historical data depends on the user's subscription plan, with a maximum limit of up to 3 years.
     /// </summary>
     /// <param name="flightId">Id of a flight</param>

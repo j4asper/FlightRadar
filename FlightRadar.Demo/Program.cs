@@ -33,13 +33,21 @@ class FlightRadarDemo
         Console.WriteLine($"Flight Altitude: {fullFlightPositions?.First().Altitude}");
         // Output: Flight Altitude: 37000
         
-        // Use Full Flight Positions Endpoint
+        // Use Light Flight Positions Endpoint
         var lightFlightPositions = await flightRadarClient.V1.GetFlightPositionsAsync(new FlightPositionsFilter()
         {
             Callsigns = ["AFR1463"]
         });
         Console.WriteLine($"Flight Altitude: {lightFlightPositions?.First().Altitude}");
         // Output: Flight Altitude: 40000
+        
+        // Use Flight Positions Count Endpoint
+        var flightPositionsCount = await flightRadarClient.V1.GetFlightPositionsCountAsync(new FlightPositionsFilter()
+        {
+            Callsigns = ["AFR1463"]
+        });
+        Console.WriteLine($"Count: {flightPositionsCount}");
+        // Output: Count: 123
         
         // Use Flight Tracks Endpoint
         var flightTracks = await flightRadarClient.V1.GetFlightTracksByFlightIdAsync("34242a02");
