@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightRadar.Client", "FlightRadar.Client\FlightRadar.Client.csproj", "{72C0B298-B478-4226-8886-54379F737ACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightRadar.Entities", "FlightRadar.Entities\FlightRadar.Entities.csproj", "{2ECFD570-5783-4631-A6DD-F4FF9FFD202D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightRadar.Demo", "FlightRadar.Demo\FlightRadar.Demo.csproj", "{27C5602B-561B-473A-B2B7-A2BD22AD6804}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72C0B298-B478-4226-8886-54379F737ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72C0B298-B478-4226-8886-54379F737ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72C0B298-B478-4226-8886-54379F737ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72C0B298-B478-4226-8886-54379F737ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ECFD570-5783-4631-A6DD-F4FF9FFD202D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ECFD570-5783-4631-A6DD-F4FF9FFD202D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ECFD570-5783-4631-A6DD-F4FF9FFD202D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ECFD570-5783-4631-A6DD-F4FF9FFD202D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C5602B-561B-473A-B2B7-A2BD22AD6804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C5602B-561B-473A-B2B7-A2BD22AD6804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C5602B-561B-473A-B2B7-A2BD22AD6804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C5602B-561B-473A-B2B7-A2BD22AD6804}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

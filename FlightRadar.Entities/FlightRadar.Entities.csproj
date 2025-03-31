@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+
+        <PackageId>FlightRadar.Entities</PackageId>
+        <Product>FlightRadar.Entities</Product>
+    </PropertyGroup>
+</Project>

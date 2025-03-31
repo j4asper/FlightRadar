@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+
+        <PackageId>FlightRadar</PackageId>
+        <Product>FlightRadar</Product>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FlightRadar.Entities\FlightRadar.Entities.csproj" />
+    </ItemGroup>
+
+</Project>
