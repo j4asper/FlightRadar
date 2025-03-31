@@ -87,10 +87,10 @@ public class FlightPositionsFilter
     public string? GroundSpeed { get; set; }
 
     /// <summary>
-    /// Limit of results. Default is 1000 results.
+    /// Limit of results.
     /// </summary>
     /// <remarks>Max value 30000</remarks>
-    public int Limit { get; set; } = 1000;
+    public int? Limit { get; set; }
     
     public override string ToString()
     {
@@ -141,7 +141,8 @@ public class FlightPositionsFilter
         if (GroundSpeed != null)
             queryElements.Add($"gspeed={GroundSpeed}");
         
-        queryElements.Add($"limit={Limit}");
+        if (Limit is not null)
+            queryElements.Add($"limit={Limit}");
         
         return string.Join("&", queryElements);
     }
