@@ -96,6 +96,27 @@ public class V1Client : IDisposable
     }
     
     /// <summary>
+    /// Returns real-time information on aircraft flight movements including latitude, longitude, speed, and altitude. At least one query parameter is required to retrieve data.
+    /// </summary>
+    /// <param name="filter">Filter to use for the flight positions result</param>
+    /// <returns>FlightPosition?</returns>
+    public async Task<IReadOnlyList<FlightPosition>?> GetFlightPositionsAsync(FlightPositionsFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/live/flight-positions/light?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<LightFlightPositionsResponseModel>();
+
+            return data?.Data;
+        }
+        
+        return null;
+    }
+    
+    /// <summary>
     /// Returns a flight with positional tracks for both live and historical flights based on the FR24 flight ID. Availability of historical data depends on the user's subscription plan, with a maximum limit of up to 3 years.
     /// </summary>
     /// <param name="flightId">Id of a flight</param>
