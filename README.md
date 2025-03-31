@@ -13,7 +13,7 @@ An Unofficial FlightRadar24 API Wrapper.
 - [x] [Airlines light](https://fr24api.flightradar24.com/docs/endpoints/overview#airlines-light)
 - [x] [Live flight positions full](https://fr24api.flightradar24.com/docs/endpoints/overview#live-flight-positions-full)
 - [x] [Live flight positions light](https://fr24api.flightradar24.com/docs/endpoints/overview#live-flight-positions-light)
-- [ ] [Live flight positions count](https://fr24api.flightradar24.com/docs/endpoints/overview#live-flight-positions-count)
+- [x] [Live flight positions count](https://fr24api.flightradar24.com/docs/endpoints/overview#live-flight-positions-count)
 - [ ] [Historic flights positions full](https://fr24api.flightradar24.com/docs/endpoints/overview#historic-flight-positions-full)
 - [ ] [Historic flights positions light](https://fr24api.flightradar24.com/docs/endpoints/overview#historic-flight-positions-light)
 - [ ] [Historic flights positions count](https://fr24api.flightradar24.com/docs/endpoints/overview#historic-flight-positions-count)
