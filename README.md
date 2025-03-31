@@ -6,7 +6,7 @@ An Unofficial FlightRadar24 API Wrapper.
 
 - [ ] Add error handling for codes other than 200 and 404.
 
-### Endpoints covered
+### Endpoint coverage
 
 - [x] [Airports light](https://fr24api.flightradar24.com/docs/endpoints/overview#airports-light)
 - [x] [Airports full](https://fr24api.flightradar24.com/docs/endpoints/overview#airports-full)
