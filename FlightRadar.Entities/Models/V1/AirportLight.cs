@@ -14,11 +14,11 @@ public class AirportLight
     /// Airport IATA code.
     /// </summary>
     [JsonPropertyName("iata")]
-    public string? IATA { get; set; }
+    public string? IataCode { get; set; }
 
     /// <summary>
     /// Airport ICAO code.
     /// </summary>
     [JsonPropertyName("icao")]
-    public required string ICAO { get; set; }
+    public required string IcaoCode { get; set; }
 }

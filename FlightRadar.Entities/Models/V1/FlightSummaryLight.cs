@@ -8,7 +8,7 @@ public class FlightSummaryLight
     /// Unique identifier assigned by Flightradar24 to each flight leg.
     /// </summary>
     [JsonPropertyName("fr24_id")]
-    public required string Fr24Id { get; set; }
+    public required string FlightRadar24Id { get; set; }
 
     /// <summary>
     /// Commercial flight number.
@@ -50,7 +50,7 @@ public class FlightSummaryLight
     /// Origin airport ICAO code.
     /// </summary>
     [JsonPropertyName("orig_icao")]
-    public string? OriginICAO { get; set; }
+    public string? DepartureIcaoCode { get; set; }
 
     /// <summary>
     /// Datetime of takeoff in UTC (YYYY-MM-DDTHH:MM:SS).
@@ -62,7 +62,7 @@ public class FlightSummaryLight
     /// Destination airport ICAO code.
     /// </summary>
     [JsonPropertyName("dest_icao")]
-    public string? DestinationICAO { get; set; }
+    public string? DestinationIcaoCode { get; set; }
 
     /// <summary>
     /// Datetime of landing in UTC.

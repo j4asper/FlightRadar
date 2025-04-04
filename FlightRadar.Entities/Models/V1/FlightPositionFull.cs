@@ -38,25 +38,25 @@ public class FlightPositionFull : FlightPositionLight
     /// Origin airport IATA code.
     /// </summary>
     [JsonPropertyName("orig_iata")]
-    public string? OriginIATA { get; set; }
+    public string? DepartureIataCode { get; set; }
 
     /// <summary>
     /// Origin airport ICAO code.
     /// </summary>
     [JsonPropertyName("orig_icao")]
-    public string? OriginICAO { get; set; }
+    public string? DepartureIcaoCode { get; set; }
 
     /// <summary>
     /// Destination airport IATA code.
     /// </summary>
     [JsonPropertyName("dest_iata")]
-    public string? DestinationIATA { get; set; }
+    public string? DestinationIataCode { get; set; }
 
     /// <summary>
     /// Destination airport ICAO code.
     /// </summary>
     [JsonPropertyName("dest_icao")]
-    public string? DestinationICAO { get; set; }
+    public string? DestinationIcaoCode { get; set; }
 
     /// <summary>
     /// Estimated time of arrival.

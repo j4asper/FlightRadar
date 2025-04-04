@@ -8,7 +8,7 @@ public class FlightTracks
     /// Unique identifier assigned by Flightradar24 to the flight leg.
     /// </summary>
     [JsonPropertyName("fr24_id")]
-    public required string Fr24Id { get; set; }
+    public required string FlightRadar24Id { get; set; }
 
     /// <summary>
     /// List of flight tracks with position and other details.

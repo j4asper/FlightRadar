@@ -8,7 +8,7 @@ public class FlightPositionLight
     /// Unique identifier assigned by Flightradar24 to each flight leg.
     /// </summary>
     [JsonPropertyName("fr24_id")]
-    public required string Fr24Id { get; set; }
+    public required string FlightRadar24Id { get; set; }
 
     /// <summary>
     /// 24 bit Mode-S identifier expressed in hexadecimal format.

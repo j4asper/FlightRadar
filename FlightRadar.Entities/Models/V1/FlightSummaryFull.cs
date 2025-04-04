@@ -8,7 +8,7 @@ public class FlightSummaryFull : FlightSummaryLight
     /// Origin airport IATA code.
     /// </summary>
     [JsonPropertyName("orig_iata")]
-    public string? OriginIATA { get; set; }
+    public string? DepartureIataCode { get; set; }
 
     /// <summary>
     /// Identifier of the runway used for takeoff.
@@ -20,19 +20,19 @@ public class FlightSummaryFull : FlightSummaryLight
     /// Destination airport IATA code.
     /// </summary>
     [JsonPropertyName("dest_iata")]
-    public string? DestinationIATA { get; set; }
+    public string? DestinationIataCode { get; set; }
 
     /// <summary>
     /// ICAO code for the actual destination airport (different when diverted).
     /// </summary>
     [JsonPropertyName("dest_icao_actual")]
-    public string? DestinationICAOActual { get; set; }
+    public string? ActualDestinationIcaoCode { get; set; }
 
     /// <summary>
     /// IATA code for the actual destination airport (different when diverted).
     /// </summary>
     [JsonPropertyName("dest_iata_actual")]
-    public string? DestinationIATAActual { get; set; }
+    public string? ActualDestinationIataCode { get; set; }
 
     /// <summary>
     /// Identifier of the runway used for landing.
