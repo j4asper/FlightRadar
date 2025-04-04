@@ -23,6 +23,8 @@ public class V1Client : IDisposable
         _httpClient = httpClient;
     }
 
+    # region Airline Endpoints
+    
     /// <summary>
     /// Returns airline name, ICAO, and IATA codes.
     /// </summary>
@@ -39,6 +41,10 @@ public class V1Client : IDisposable
         
         return null;
     }
+    
+    # endregion
+    
+    # region Airport Endpoints
     
     /// <summary>
     /// Returns details of the requested airport including its name, codes, location, elevation, and timezone information.
@@ -73,6 +79,10 @@ public class V1Client : IDisposable
         
         return null;
     }
+    
+    # endregion
+    
+    # region Flight Position Endpoints
     
     /// <summary>
     /// Returns comprehensive real-time information on aircraft flight movements, including flight and aircraft details such as origin, destination, and aircraft type. At least one query parameter is required to retrieve data.
@@ -137,6 +147,10 @@ public class V1Client : IDisposable
         return null;
     }
     
+    # endregion
+    
+    # region Historic Flight Position Endpoints
+    
     /// <summary>
     /// Returns comprehensive historical information on aircraft flight movements, including flight and aircraft details such as origin, destination, and aircraft type, dating back to May 11, 2016. At least one query parameter and a history snapshot timestamp are required to retrieve data.
     /// </summary>
@@ -200,6 +214,10 @@ public class V1Client : IDisposable
         return null;
     }
     
+    # endregion
+    
+    # region Flight Tracks Endpoints
+    
     /// <summary>
     /// Returns a flight with positional tracks for both live and historical flights based on the FR24 flight ID. Availability of historical data depends on the user's subscription plan, with a maximum limit of up to 3 years.
     /// </summary>
@@ -216,6 +234,10 @@ public class V1Client : IDisposable
         
         return null;
     }
+    
+    # endregion
+    
+    # region Usage Endpoints
     
     /// <summary>
     /// Get info on API account usage.
@@ -237,6 +259,8 @@ public class V1Client : IDisposable
         
         return null;
     }
+    
+    # endregion
     
     public void Dispose() => _httpClient.Dispose();
 }
