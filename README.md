@@ -2,10 +2,6 @@
 
 An Unofficial FlightRadar24 API Wrapper. This API Wrapper covers all current v1 endpoints.
 
-## To-Do
-
-- [ ] Add error handling for codes other than 200 and 404.
-
 ## FlightRadar Client Examples
 
 ### Setup
