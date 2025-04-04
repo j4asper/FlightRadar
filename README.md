@@ -47,12 +47,9 @@ var currentFlights = await flightRadarClient.V1.GetFullFlightPositionsAsync(new 
     // Airports
 });
 
-if (currentFlights != null)
+foreach (var flight in currentFlights)
 {
-    foreach (var flight in currentFlights)
-    {
-        Console.WriteLine($"Flight: {flight.Callsign}, Altitude: {flight.Altitude}ft, Speed: {flight.GroundSpeed}kts");
-    }
+    Console.WriteLine($"Flight: {flight.Callsign}, Altitude: {flight.Altitude}ft, Speed: {flight.GroundSpeed}kts");
 }
 
 // Get count of flights matching criteria
@@ -73,12 +70,9 @@ var historicPositions = await flightRadarClient.V1.GetFullHistoricFlightPosition
     Callsigns = ["AFR1234"]
 });
 
-if (historicPositions != null)
+foreach (var position in historicPositions)
 {
-    foreach (var position in historicPositions)
-    {
-        Console.WriteLine($"Historic position: {position.Callsign} at {position.Timestamp}, Alt: {position.Altitude}ft");
-    }
+    Console.WriteLine($"Historic position: {position.Callsign} at {position.Timestamp}, Alt: {position.Altitude}ft");
 }
 ```
 
@@ -104,7 +98,7 @@ if (flightSummary != null && flightSummary.Any())
 // Get flight track history by flight ID
 var tracks = await flightRadarClient.V1.GetFlightTracksByFlightIdAsync("34242a02");
 
-if (tracks != null && tracks.Any())
+if (tracks.Any())
 {
     var firstTrack = tracks.First();
     Console.WriteLine($"Track path points: {firstTrack.Tracks.Count()}, Source: {firstTrack.Tracks.First().Source}");
@@ -123,11 +117,8 @@ if (tracks != null && tracks.Any())
 // Check your API usage
 var usageStats = await flightRadarClient.V1.GetApiUsageAsync(TimePeriod.Last24Hours);
 
-if (usageStats != null)
+foreach (var stat in usageStats)
 {
-    foreach (var stat in usageStats)
-    {
-        Console.WriteLine($"Endpoint: {stat.Endpoint}, Requests: {stat.RequestCount}, Credits used: {stat.Credits}");
-    }
+    Console.WriteLine($"Endpoint: {stat.Endpoint}, Requests: {stat.RequestCount}, Credits used: {stat.Credits}");
 }
 ```
