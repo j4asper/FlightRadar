@@ -1,6 +1,10 @@
 # FlightRadar
 
-An Unofficial FlightRadar24 API Wrapper. This API Wrapper covers all current v1 endpoints.
+This is an unofficial FlightRadar24 API wrapper designed to provide easy and efficient access to the FlightRadar24 data. It supports all current v1 endpoints, enabling you to retrieve a wide range of real-time flight information directly into your applications.
+
+## Official API Documentation
+
+For more details on the available endpoints and how to use the official FlightRadar24 API, visit the official documentation here https://fr24api.flightradar24.com/docs/getting-started.
 
 ## FlightRadar Client Examples
 
