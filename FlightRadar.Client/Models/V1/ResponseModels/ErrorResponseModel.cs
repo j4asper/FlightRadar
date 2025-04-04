@@ -1,6 +1,6 @@
-namespace FlightRadar.Client.Models;
+namespace FlightRadar.Client.Models.V1.ResponseModels;
 
-public class Error
+public class ErrorResponseModel
 {
     public required string Message { get; set; }
     public string? Details { get; set; }

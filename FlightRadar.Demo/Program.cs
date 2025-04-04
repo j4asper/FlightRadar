@@ -1,5 +1,4 @@
 ﻿using FlightRadar.Client;
-using FlightRadar.Client.Models;
 using FlightRadar.Client.Models.V1;
 
 namespace FlightRadar.Demo;

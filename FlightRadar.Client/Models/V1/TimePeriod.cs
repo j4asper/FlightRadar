@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace FlightRadar.Client.Models;
+namespace FlightRadar.Client.Models.V1;
 
 public enum TimePeriod
 {

@@ -3,8 +3,8 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using FlightRadar.Client.Constants;
 using FlightRadar.Client.Extensions;
-using FlightRadar.Client.Models;
 using FlightRadar.Client.Models.V1;
+using FlightRadar.Client.Models.V1.ResponseModels;
 using FlightRadar.Entities.Models.V1;
 
 namespace FlightRadar.Client.Clients;
