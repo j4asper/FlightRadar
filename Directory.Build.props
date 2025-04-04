@@ -14,6 +14,6 @@
         <RepositoryUrl>https://github.com/j4asper/FlightRadar</RepositoryUrl>
         <PackageProjectUrl>https://github.com/j4asper/FlightRadar</PackageProjectUrl>
         <Authors>Jasper Christiansen</Authors>
-        <Description>A simple unofficial wrapper for the FlightRadar24 API.</Description>
+        <Description>This is an unofficial FlightRadar24 API wrapper designed to provide easy and efficient access to the FlightRadar24 data.</Description>
     </PropertyGroup>
 </Project>

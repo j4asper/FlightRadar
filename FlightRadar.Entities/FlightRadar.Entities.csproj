@@ -1,8 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
         <IsPackable>true</IsPackable>
-
         <PackageId>FlightRadar.Entities</PackageId>
         <Product>FlightRadar.Entities</Product>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
 </Project>
