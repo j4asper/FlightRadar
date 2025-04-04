@@ -2,26 +2,8 @@ using System.Text.Json.Serialization;
 
 namespace FlightRadar.Entities.Models.V1;
 
-public class AirportDetailed
+public class AirportFull : AirportLight
 {
-    /// <summary>
-    /// Name of the airport (e.g., "Stockholm Arlanda Airport").
-    /// </summary>
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    /// <summary>
-    /// Airport IATA code (nullable, e.g., "ARN").
-    /// </summary>
-    [JsonPropertyName("iata")]
-    public string? IATA { get; set; }
-
-    /// <summary>
-    /// Airport ICAO code (nullable, e.g., "ESSA").
-    /// </summary>
-    [JsonPropertyName("icao")]
-    public string? ICAO { get; set; }
-
     /// <summary>
     /// Longitude expressed in decimal degrees.
     /// </summary>

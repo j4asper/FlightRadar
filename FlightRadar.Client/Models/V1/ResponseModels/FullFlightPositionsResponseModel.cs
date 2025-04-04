@@ -6,5 +6,5 @@ namespace FlightRadar.Client.Models.V1.ResponseModels;
 public class FullFlightPositionsResponseModel
 {
     [JsonPropertyName("data")]
-    public required IReadOnlyList<FlightPosition> Data { get; set; }
+    public required IReadOnlyList<FlightPositionFull> Data { get; set; }
 }

@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace FlightRadar.Entities.Models.V1;
 
-public class Airport
+public class AirportLight
 {
     /// <summary>
     /// Name of the airport.

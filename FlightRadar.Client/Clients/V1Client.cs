@@ -45,14 +45,14 @@ public class V1Client : IDisposable
     /// </summary>
     /// <param name="code">ICAO or IATA code of the airport</param>
     /// <returns>Airport?</returns>
-    public async Task<Airport?> GetAirportInfoByCodeAsync(string code)
+    public async Task<AirportLight?> GetAirportInfoByCodeAsync(string code)
     {
         var response = await _httpClient.GetAsync($"/api/static/airports/{code}/light");
 
         // handle error codes
         
         if (response.StatusCode == HttpStatusCode.OK)
-            return await response.Content.ReadFromJsonAsync<Airport>();
+            return await response.Content.ReadFromJsonAsync<AirportLight>();
         
         return null;
     }
@@ -62,14 +62,14 @@ public class V1Client : IDisposable
     /// </summary>
     /// <param name="code">ICAO or IATA code of the airport</param>
     /// <returns>AirportDetailed?</returns>
-    public async Task<AirportDetailed?> GetDetailedAirportInfoByCodeAsync(string code)
+    public async Task<AirportFull?> GetDetailedAirportInfoByCodeAsync(string code)
     {
         var response = await _httpClient.GetAsync($"/api/static/airports/{code}/full");
 
         // handle error codes
         
         if (response.StatusCode == HttpStatusCode.OK)
-            return await response.Content.ReadFromJsonAsync<AirportDetailed>();
+            return await response.Content.ReadFromJsonAsync<AirportFull>();
         
         return null;
     }
@@ -79,7 +79,7 @@ public class V1Client : IDisposable
     /// </summary>
     /// <param name="filter">Filter to use for the flight positions result</param>
     /// <returns>FlightPosition?</returns>
-    public async Task<IReadOnlyList<FlightPosition>?> GetFullFlightPositionsAsync(FlightPositionsFilter filter)
+    public async Task<IReadOnlyList<FlightPositionFull>?> GetFullFlightPositionsAsync(FlightPositionsFilter filter)
     {
         var response = await _httpClient.GetAsync($"/api/live/flight-positions/full?{filter}");
 
@@ -100,7 +100,7 @@ public class V1Client : IDisposable
     /// </summary>
     /// <param name="filter">Filter to use for the flight positions result</param>
     /// <returns>FlightPosition?</returns>
-    public async Task<IReadOnlyList<FlightPosition>?> GetFlightPositionsAsync(FlightPositionsFilter filter)
+    public async Task<IReadOnlyList<FlightPositionLight>?> GetFlightPositionsAsync(FlightPositionsFilter filter)
     {
         var response = await _httpClient.GetAsync($"/api/live/flight-positions/light?{filter}");
 
@@ -122,6 +122,69 @@ public class V1Client : IDisposable
     /// <param name="filter">Filter to use for the flight positions result</param>
     /// <returns>int?</returns>
     public async Task<int?> GetFlightPositionsCountAsync(FlightPositionsFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/live/flight-positions/count?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<FlightPositionsCountResponseModel>();
+
+            return data?.Data.First().RecordCount;
+        }
+        
+        return null;
+    }
+    
+    /// <summary>
+    /// Returns comprehensive historical information on aircraft flight movements, including flight and aircraft details such as origin, destination, and aircraft type, dating back to May 11, 2016. At least one query parameter and a history snapshot timestamp are required to retrieve data.
+    /// </summary>
+    /// <param name="filter">Filter to use for the historic flight positions result</param>
+    /// <returns>FlightPosition?</returns>
+    public async Task<IReadOnlyList<FlightPositionFull>?> GetFullHistoricFlightPositionsAsync(HistoricFlightPositionFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/historic/flight-positions/full?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<FullFlightPositionsResponseModel>();
+
+            return data?.Data;
+        }
+        
+        return null;
+    }
+    
+    /// <summary>
+    /// Returns historical information on aircraft flight movements including latitude, longitude, speed, and altitude, dating back to May 11, 2016. At least one query parameter and a history snapshot timestamp are required to retrieve data.
+    /// </summary>
+    /// <param name="filter">Filter to use for the historic flight positions result</param>
+    /// <returns>FlightPosition?</returns>
+    public async Task<IReadOnlyList<FlightPositionLight>?> GetHistoricFlightPositionsAsync(HistoricFlightPositionFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/historic/flight-positions/light?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<LightFlightPositionsResponseModel>();
+
+            return data?.Data;
+        }
+        
+        return null;
+    }
+    
+    /// <summary>
+    /// Returns number of historical aircraft flight positions.
+    /// </summary>
+    /// <param name="filter">Filter to use for the historic flight positions result</param>
+    /// <returns>int?</returns>
+    public async Task<int?> GetHistoricFlightPositionsCountAsync(HistoricFlightPositionFilter filter)
     {
         var response = await _httpClient.GetAsync($"/api/live/flight-positions/count?{filter}");
 

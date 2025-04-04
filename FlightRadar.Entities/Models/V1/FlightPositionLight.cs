@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace FlightRadar.Entities.Models.V1;
 
-public class FlightPosition
+public class FlightPositionLight
 {
     /// <summary>
     /// Unique identifier assigned by Flightradar24 to each flight leg.
