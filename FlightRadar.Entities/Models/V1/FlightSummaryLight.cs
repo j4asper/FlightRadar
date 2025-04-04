@@ -56,7 +56,7 @@ public class FlightSummaryLight
     /// Datetime of takeoff in UTC (YYYY-MM-DDTHH:MM:SS).
     /// </summary>
     [JsonPropertyName("datetime_takeoff")]
-    public DateTime? DateTimeTakeoff { get; set; }
+    public DateTime? TakeoffTime { get; set; }
 
     /// <summary>
     /// Destination airport ICAO code.
@@ -68,7 +68,7 @@ public class FlightSummaryLight
     /// Datetime of landing in UTC.
     /// </summary>
     [JsonPropertyName("datetime_landed")]
-    public DateTime? DateTimeLanded { get; set; }
+    public DateTime? LandedTime { get; set; }
 
     /// <summary>
     /// 24 bit Mode-S identifier expressed in hexadecimal format.
