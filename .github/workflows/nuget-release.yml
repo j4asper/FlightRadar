@@ -1,0 +1,32 @@
+name: Build and Publish NuGet Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Publish NuGet Package
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release /p:Version=${{ github.ref_name }}
+
+      - name: Pack
+        run: dotnet pack --configuration Release /p:Version=${{ github.ref_name }} --no-build --output .
+
+      - name: Push
+        run: |
+          dotnet nuget push FlightRadar.${{ github.ref_name }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          dotnet nuget push FlightRadar.Entities.${{ github.ref_name }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
