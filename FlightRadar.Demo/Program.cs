@@ -67,7 +67,7 @@ class FlightRadarDemo
         
         
         //
-        // Use Full Flight Positions Endpoint
+        // Use Full Historic Flight Positions Endpoint
         //
         var fullHistoricFlightPositions = await flightRadarClient.V1.GetFullHistoricFlightPositionsAsync(new HistoricFlightPositionFilter()
         {
@@ -79,7 +79,7 @@ class FlightRadarDemo
         
         
         //
-        // Use Light Flight Positions Endpoint
+        // Use Light Historic Flight Positions Endpoint
         //
         var lightHistoricFlightPositions = await flightRadarClient.V1.GetHistoricFlightPositionsAsync(new HistoricFlightPositionFilter()
         {
@@ -91,7 +91,7 @@ class FlightRadarDemo
         
         
         //
-        // Use Flight Positions Count Endpoint
+        // Use Flight Historic Positions Count Endpoint
         //
         var flightHistoricPositionsCount = await flightRadarClient.V1.GetHistoricFlightPositionsCountAsync(new HistoricFlightPositionFilter()
         {
@@ -100,6 +100,45 @@ class FlightRadarDemo
         });
         Console.WriteLine($"Count: {flightHistoricPositionsCount}");
         // Output: Count: 123
+        
+        
+        
+        //
+        // Use Full Flight Summary Endpoint
+        //
+        var fullFlightSummary = await flightRadarClient.V1.GetFullFlightSummaryAsync(new FlightSummaryFilter()
+        {
+            FlightIds = ["380ce8ef"],
+            Flights = ["SK1415"]
+        });
+        Console.WriteLine($"Flight Callsign: {fullFlightSummary?.First().Callsign}");
+        // Output: Flight Altitude: 37000
+        
+        
+        //
+        // Use Light Flight Summary Endpoint
+        //
+        var lightFlightSummary = await flightRadarClient.V1.GetFlightSummaryAsync(new FlightSummaryFilter()
+        {
+            FlightIds = ["380ce8ef"],
+            Flights = ["SK1415"]
+        });
+        Console.WriteLine($"Flight: {lightFlightSummary?.First().FlightNumber}");
+        // Output: Flight Altitude: 40000
+        
+        
+        //
+        // Use Flight Summary Count Endpoint
+        //
+        var flightSummaryCount = await flightRadarClient.V1.GetFlightSummaryCountAsync(new FlightSummaryFilter()
+        {
+            FlightIds = ["380ce8ef"],
+            Flights = ["SK1415"]
+        });
+        Console.WriteLine($"Count: {flightHistoricPositionsCount}");
+        // Output: Count: 123
+        
+        
         
         
         //

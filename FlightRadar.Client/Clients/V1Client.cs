@@ -131,7 +131,7 @@ public class V1Client : IDisposable
     /// </summary>
     /// <param name="filter">Filter to use for the flight positions result</param>
     /// <returns>int?</returns>
-    public async Task<int?> GetFlightPositionsCountAsync(FlightPositionsFilter filter)
+    public async Task<int> GetFlightPositionsCountAsync(FlightPositionsFilter filter)
     {
         var response = await _httpClient.GetAsync($"/api/live/flight-positions/count?{filter}");
 
@@ -139,12 +139,12 @@ public class V1Client : IDisposable
         
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            var data = await response.Content.ReadFromJsonAsync<FlightPositionsCountResponseModel>();
+            var data = await response.Content.ReadFromJsonAsync<RecordCountResponseModel>();
 
-            return data?.Data.First().RecordCount;
+            return data?.Data.First().RecordCount ?? 0;
         }
         
-        return null;
+        return 0;
     }
     
     # endregion
@@ -198,7 +198,7 @@ public class V1Client : IDisposable
     /// </summary>
     /// <param name="filter">Filter to use for the historic flight positions result</param>
     /// <returns>int?</returns>
-    public async Task<int?> GetHistoricFlightPositionsCountAsync(HistoricFlightPositionFilter filter)
+    public async Task<int> GetHistoricFlightPositionsCountAsync(HistoricFlightPositionFilter filter)
     {
         var response = await _httpClient.GetAsync($"/api/live/flight-positions/count?{filter}");
 
@@ -206,12 +206,79 @@ public class V1Client : IDisposable
         
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            var data = await response.Content.ReadFromJsonAsync<FlightPositionsCountResponseModel>();
+            var data = await response.Content.ReadFromJsonAsync<RecordCountResponseModel>();
 
-            return data?.Data.First().RecordCount;
+            return data?.Data.First().RecordCount ?? 0;
+        }
+        
+        return 0;
+    }
+    
+    # endregion
+    
+    # region Flight Summary Endpoints
+    
+    /// <summary>
+    /// Returns key timings and locations of aircraft takeoffs and landings alongside all primary flight, aircraft and operator information. Specify either flight_ids or supply both flight_datetime_from and flight_datetime_to along with at least one of the following query parameters - flights, registrations, callsigns, painted_as, operating_as, airports, type, or routes.
+    /// </summary>
+    /// <param name="filter">Filter to use for the flight summary result</param>
+    /// <returns>FlightPosition?</returns>
+    public async Task<IReadOnlyList<FlightSummaryFull>?> GetFullFlightSummaryAsync(FlightSummaryFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/flight-summary/full?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<FullFlightSummaryResponseModel>();
+
+            return data?.Data;
         }
         
         return null;
+    }
+    
+    /// <summary>
+    /// Returns key timings and locations of aircraft takeoffs and landings alongside all primary flight, aircraft and operator information. Specify either flight_ids or supply both flight_datetime_from and flight_datetime_to along with at least one of the following query parameters - flights, registrations, callsigns, painted_as, operating_as, airports, type, or routes.
+    /// </summary>
+    /// <param name="filter">Filter to use for the flight summary result</param>
+    /// <returns>FlightPosition?</returns>
+    public async Task<IReadOnlyList<FlightSummaryLight>?> GetFlightSummaryAsync(FlightSummaryFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/flight-summary/light?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<LightFlightSummaryResponseModel>();
+
+            return data?.Data;
+        }
+        
+        return null;
+    }
+    
+    /// <summary>
+    /// Returns the number of flights for a given flight summary query.
+    /// </summary>
+    /// <param name="filter">Filter to use for the flight summary result</param>
+    /// <returns>int?</returns>
+    public async Task<int> GetFlightSummaryCountAsync(FlightSummaryFilter filter)
+    {
+        var response = await _httpClient.GetAsync($"/api/flight-summary/count?{filter}");
+
+        // handle error codes
+        
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var data = await response.Content.ReadFromJsonAsync<RecordCountResponseModel>();
+
+            return data?.Data.First().RecordCount ?? 0;
+        }
+        
+        return 0;
     }
     
     # endregion

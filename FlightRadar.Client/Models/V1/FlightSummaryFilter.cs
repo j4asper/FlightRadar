@@ -1,15 +1,26 @@
 using FlightRadar.Client.Extensions;
-using FlightRadar.Entities.Models.V1;
 
 namespace FlightRadar.Client.Models.V1;
 
-public class FlightPositionsFilter
+public class FlightSummaryFilter
 {
     /// <summary>
-    /// Coordinates defining an area. Order: north, south, west, east. Up to 3 decimal points will be processed.
+    /// FlightRadar24 ids. Cannot be combined with <b>From</b> and <b>To</b>
     /// </summary>
-    /// <remarks>Max 4 elements</remarks>
-    public List<double> Bounds { get; set; } = [];
+    /// <remarks>Max 15 elements</remarks>
+    public List<string> FlightIds { get; set; } = [];
+    
+    /// <summary>
+    /// Flight date lower range, uses <b>FirstSeen</b>.
+    /// </summary>
+    /// <remarks>Cannot be combined with FlightIds</remarks>
+    public DateTime? From { get; set; }
+    
+    /// <summary>
+    /// Flight date upper range, uses <b>FirstSeen</b>.
+    /// </summary>
+    /// <remarks>Cannot be combined with FlightIds</remarks>
+    public DateTime? To { get; set; }
     
     /// <summary>
     /// Flight numbers.
@@ -56,48 +67,28 @@ public class FlightPositionsFilter
     public List<string> Aircraft { get; set; } = [];
     
     /// <summary>
-    /// Flight altitude ranges represent the aircraft's barometric pressure altitude above mean sea level (AMSL), measured under standard atmospheric conditions (1013.25 hPa / 29.92 in. Hg.). Altitudes are expressed in feet, starting from 0, where 0 reflects ground level AMSL.
+    /// Sorting order of the results by <b>FirstSeen</b>
     /// </summary>
-    public List<AltitudeRange> AltitudeRanges { get; set; } = [];
+    public SortingOrder SortingOrder { get; set; } = SortingOrder.Ascending;
     
-    /// <summary>
-    /// Squawk codes in hex format.
-    /// </summary>
-    public List<string> Squawks { get; set; } = [];
-
-    /// <summary>
-    /// Categories of Flights.
-    /// </summary>
-    public List<FlightCategory> Categories { get; set; } = [];
-
-    /// <summary>
-    /// Source of information about flights.
-    /// </summary>
-    public List<DataSource> DataSources { get; set; } = [];
-    
-    /// <summary>
-    /// Flight information region in lower or upper airspace.
-    /// </summary>
-    public List<string> Airspaces { get; set; } = [];
-    
-    /// <summary>
-    /// Flight ground speed (in knots). Accepts single value or range.
-    /// </summary>
-    /// <example>120-140 | 80 | 0-40</example>
-    public string? GroundSpeed { get; set; }
-
     /// <summary>
     /// Limit of results.
     /// </summary>
-    /// <remarks>Max value 30000</remarks>
+    /// <remarks>Max value 20000</remarks>
     public int? Limit { get; set; } = null;
-    
+
     public override string ToString()
     {
         List<string> queryElements = [];
 
-        if (Bounds.Any())
-            queryElements.Add($"bounds={string.Join(",", Bounds)}");
+        if (FlightIds.Any())
+            queryElements.Add($"flight_ids={string.Join(",", FlightIds)}");
+        
+        if (From.HasValue)
+            queryElements.Add($"flight_datetime_from={From}");
+        
+        if (To.HasValue)
+            queryElements.Add($"flight_datetime_to={To}");
         
         if (Flights.Any())
             queryElements.Add($"flights={string.Join(",", Flights)}");
@@ -123,23 +114,7 @@ public class FlightPositionsFilter
         if (Aircraft.Any())
             queryElements.Add($"aircraft={string.Join(",", Aircraft)}");
         
-        if (AltitudeRanges.Any())
-            queryElements.Add($"altitude_ranges={string.Join(",", AltitudeRanges)}");
-        
-        if (Squawks.Any())
-            queryElements.Add($"squawks={string.Join(",", Squawks)}");
-        
-        if (Categories.Any())
-            queryElements.Add($"categories={string.Join(",", Categories.Select(c => c.GetDescription()))}");
-        
-        if (DataSources.Any())
-            queryElements.Add($"data_sources={string.Join(",", DataSources.Select(x => x.ToString().ToUpper()))}");
-        
-        if (Airspaces.Any())
-            queryElements.Add($"airspaces={string.Join(",", Airspaces)}");
-        
-        if (GroundSpeed != null)
-            queryElements.Add($"gspeed={GroundSpeed}");
+        queryElements.Add($"sort={SortingOrder.GetDescription()}");
         
         if (Limit is not null)
             queryElements.Add($"limit={Limit}");
