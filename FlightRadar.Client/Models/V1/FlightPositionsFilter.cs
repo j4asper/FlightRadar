@@ -1,3 +1,4 @@
+using System.Globalization;
 using FlightRadar.Client.Extensions;
 using FlightRadar.Entities.Models.V1;
 
@@ -97,7 +98,7 @@ public class FlightPositionsFilter
         List<string> queryElements = [];
 
         if (Bounds.Any())
-            queryElements.Add($"bounds={string.Join(",", Bounds)}");
+            queryElements.Add($"bounds={string.Join(",", Bounds.Select(x => x.ToString(CultureInfo.InvariantCulture)))}");
         
         if (Flights.Any())
             queryElements.Add($"flights={string.Join(",", Flights)}");
