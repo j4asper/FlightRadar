@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightRadar.Entities", "Fli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightRadar.Demo", "FlightRadar.Demo\FlightRadar.Demo.csproj", "{27C5602B-561B-473A-B2B7-A2BD22AD6804}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightRadar.Tests", "FlightRadar.Tests\FlightRadar.Tests.csproj", "{FB3CA113-F22E-45D8-A41F-42A7EDBA890E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{27C5602B-561B-473A-B2B7-A2BD22AD6804}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27C5602B-561B-473A-B2B7-A2BD22AD6804}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27C5602B-561B-473A-B2B7-A2BD22AD6804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3CA113-F22E-45D8-A41F-42A7EDBA890E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3CA113-F22E-45D8-A41F-42A7EDBA890E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3CA113-F22E-45D8-A41F-42A7EDBA890E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3CA113-F22E-45D8-A41F-42A7EDBA890E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
