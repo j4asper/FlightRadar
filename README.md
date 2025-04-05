@@ -1,3 +1,10 @@
+[![NuGet Version](https://img.shields.io/nuget/v/FlightRadar?style=for-the-badge&logo=NuGet&logoColor=F7BF24&label=Version&color=F7BF24)](https://www.nuget.org/packages/FlightRadar)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/FlightRadar?style=for-the-badge&logo=NuGet&logoColor=F7BF24&label=Downloads&color=F7BF24)](https://www.nuget.org/packages/FlightRadar)
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/j4asper/flightradar/unit-tests.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=F7BF24&label=Unit%20Tests&color=F7BF24)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/j4asper/flightradar/nuget-release.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=F7BF24&label=Release%20Workflow&color=F7BF24)
+
+
 # FlightRadar
 
 This is an unofficial FlightRadar24 API wrapper designed to provide easy and efficient access to the FlightRadar24 data. It supports all current v1 endpoints, enabling you to retrieve a wide range of real-time flight information directly into your applications.
