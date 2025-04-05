@@ -85,10 +85,10 @@ public class FlightSummaryFilter
             queryElements.Add($"flight_ids={string.Join(",", FlightIds)}");
         
         if (From.HasValue)
-            queryElements.Add($"flight_datetime_from={From}");
+            queryElements.Add($"flight_datetime_from={From.Value.ToUniversalIso8601()}");
         
         if (To.HasValue)
-            queryElements.Add($"flight_datetime_to={To}");
+            queryElements.Add($"flight_datetime_to={To.Value.ToUniversalIso8601()}");
         
         if (Flights.Any())
             queryElements.Add($"flights={string.Join(",", Flights)}");
