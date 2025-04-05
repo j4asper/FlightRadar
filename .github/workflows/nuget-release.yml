@@ -5,9 +5,12 @@ on:
     types: [published]
 
 jobs:
+  tests:
+    uses: ./.github/workflows/unit-tests.yml
   build:
     runs-on: ubuntu-latest
     name: Build and Publish NuGet Package
+    needs: [tests]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
