@@ -13,6 +13,16 @@ This is an unofficial FlightRadar24 API wrapper designed to provide easy and eff
 
 For more details on the available endpoints and how to use the official FlightRadar24 API, visit the official documentation here https://fr24api.flightradar24.com/docs/getting-started.
 
+## Installation
+
+You can install the FlightRadar library from NuGet by running the following command in your project:
+
+```
+dotnet add package FlightRadar
+```
+
+Alternatively, you can add it via the NuGet Package Manager in Visual Studio or by editing your .csproj file directly.
+
 ## FlightRadar Client Examples
 
 ### Setup
