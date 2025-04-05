@@ -114,7 +114,8 @@ public class FlightSummaryFilter
         if (Aircraft.Any())
             queryElements.Add($"aircraft={string.Join(",", Aircraft)}");
         
-        queryElements.Add($"sort={SortingOrder.GetDescription()}");
+        if (SortingOrder != SortingOrder.Ascending)
+            queryElements.Add($"sort={SortingOrder.GetDescription()}");
         
         if (Limit is not null)
             queryElements.Add($"limit={Limit}");
