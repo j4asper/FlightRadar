@@ -14,6 +14,9 @@ public class HistoricFlightPositionFilter : FlightPositionsFilter
 
         var unixTimestamp = ((DateTimeOffset)Timestamp).ToUnixTimeSeconds();
         
+        if (withoutTimestamp == string.Empty)
+            return $"timestamp={unixTimestamp}";
+        
         return withoutTimestamp + $"&timestamp={unixTimestamp}";
     }
 }
