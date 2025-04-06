@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace FlightRadar.Entities.Models.V1;
 
 public class Airline
@@ -7,18 +5,10 @@ public class Airline
     /// <summary>
     /// Name of the airline.
     /// </summary>
-    [JsonPropertyName("name")]
     public required string Name { get; set; }
 
     /// <summary>
-    /// Airline IATA code.
+    /// Airline code.
     /// </summary>
-    [JsonPropertyName("iata")]
-    public string? IataCode { get; set; }
-
-    /// <summary>
-    /// Airline ICAO code.
-    /// </summary>
-    [JsonPropertyName("icao")]
-    public required string IcaoCode { get; set; }
+    public required Code Code { get; set; }
 }

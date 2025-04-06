@@ -36,41 +36,47 @@ var flightRadarClient = new FlightRadarClient("YOUR_API_KEY");
 
 ```csharp
 // Get detailed airport information
-var airportDetails = await flightRadarClient.V1.GetDetailedAirportInfoByCodeAsync("KJFK");
-Console.WriteLine($"Airport: {airportDetails?.Name}, Location: {airportDetails?.City}, {airportDetails?.Country}");
+var fullAirport = await flightRadarClient.V1.Airports.GetFullByCodeAsync("KJFK");
+if (fullAirport is not null)
+    Console.WriteLine($"Airport: {fullAirport.Name}, Location: {fullAirport.City}, {fullAirport.Country}");
 
 // Get basic airport information
-var airport = await flightRadarClient.V1.GetAirportInfoByCodeAsync("EGLL");
-Console.WriteLine($"Airport: {airport?.Name} (IATA: {airport?.IataCode})");
+var airport = await flightRadarClient.V1.Airports.GetByCodeAsync("EGLL");
+if (airport is not null)
+    Console.WriteLine($"Airport: {airport.Name} (IATA: {airport.Code.Iata})");
 ```
 
 ### Airlines
 
 ```csharp
 // Get airline information by ICAO code
-var airline = await flightRadarClient.V1.GetAirlineInfoByIcaoAsync("UAL");
-Console.WriteLine($"Airline: {airline?.Name} ({airline?.IcaoCode})");
+var airline = await flightRadarClient.V1.Airlines.GetByIcaoCodeAsync("UAL");
+if (airline is not null)
+    Console.WriteLine($"Airline: {airline.Name} ({airline.Code.Icao})");
 ```
 
 ### Flight Positions
 
 ```csharp
 // Get current flight positions with filtering
-var currentFlights = await flightRadarClient.V1.GetFullFlightPositionsAsync(new FlightPositionsFilter 
+var currentFlights = await flightRadarClient.V1.FlightPositions.GetFullAsync(new FlightPositionsFilter 
 {
     Callsigns = ["UAL123", "DLH456"],
     // You can also filter by:
     // - Bounds (geographical rectangle)
-    // Airports
+    // - Airports
 });
 
-foreach (var flight in currentFlights)
+if (currentFlights.Any())
 {
-    Console.WriteLine($"Flight: {flight.Callsign}, Altitude: {flight.Altitude}ft, Speed: {flight.GroundSpeed}kts");
+    foreach (var flight in currentFlights)
+    {
+        Console.WriteLine($"Flight: {flight.Callsign}, Altitude: {flight.Altitude}ft, Speed: {flight.GroundSpeed}kts");
+    }
 }
 
 // Get count of flights matching criteria
-var count = await flightRadarClient.V1.GetFlightPositionsCountAsync(new FlightPositionsFilter
+var count = await flightRadarClient.V1.FlightPositions.GetCountAsync(new FlightPositionsFilter
 {
     OperatingAs = ["SAS", "BAW"]
 });
@@ -81,7 +87,7 @@ Console.WriteLine($"Found {count} flights operating for SAS and British Airways"
 
 ```csharp
 // Get historical flight positions
-var historicPositions = await flightRadarClient.V1.GetFullHistoricFlightPositionsAsync(new HistoricFlightPositionFilter
+var historicPositions = await flightRadarClient.V1.HistoricFlightPositions.GetFullAsync(new HistoricFlightPositionFilter
 {
     Timestamp = DateTime.Now.AddDays(-1),
     Callsigns = ["AFR1234"]
@@ -97,15 +103,15 @@ foreach (var position in historicPositions)
 
 ```csharp
 // Get detailed flight summary
-var flightSummary = await flightRadarClient.V1.GetFullFlightSummaryAsync(new FlightSummaryFilter
+var flightSummary = await flightRadarClient.V1.FlightSummaries.GetFullAsync(new FlightSummaryFilter
 {
     FlightIds = ["12345abc"]
 });
 
-if (flightSummary != null && flightSummary.Any())
+if (flightSummary.Any())
 {
     var flight = flightSummary.First();
-    Console.WriteLine($"Flight: {flight.Callsign}, From: {flight.DepartureIcaoCode} To: {flight.DestinationIcaoCode}");
+    Console.WriteLine($"Flight: {flight.Callsign}, From: {flight.DepartureAirport.Icao} To: {flight.DestinationAirport.Icao}");
 }
 ```
 
@@ -113,7 +119,7 @@ if (flightSummary != null && flightSummary.Any())
 
 ```csharp
 // Get flight track history by flight ID
-var tracks = await flightRadarClient.V1.GetFlightTracksByFlightIdAsync("34242a02");
+var tracks = await flightRadarClient.V1.FlightTracks.GetByFlightIdAsync("34242a02");
 
 if (tracks.Any())
 {
@@ -132,7 +138,7 @@ if (tracks.Any())
 
 ```csharp
 // Check your API usage
-var usageStats = await flightRadarClient.V1.GetApiUsageAsync(TimePeriod.Last24Hours);
+var usageStats = await flightRadarClient.V1.Usage.GetAsync(TimePeriod.Last24Hours);
 
 foreach (var stat in usageStats)
 {
