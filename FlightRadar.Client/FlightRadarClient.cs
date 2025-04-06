@@ -1,4 +1,5 @@
 using FlightRadar.Client.Clients;
+using FlightRadar.Core.Clients;
 
 namespace FlightRadar.Client;
 
@@ -7,7 +8,7 @@ public class FlightRadarClient : IDisposable
     /// <summary>
     /// All v1 endpoints.
     /// </summary>
-    public V1Client V1 { get; private set; }
+    public IV1Client V1 { get; }
 
     public FlightRadarClient(string flightRadarApiKey)
     {

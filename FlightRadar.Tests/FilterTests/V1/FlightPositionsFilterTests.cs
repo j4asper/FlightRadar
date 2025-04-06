@@ -1,4 +1,4 @@
-using FlightRadar.Client.Models.V1;
+using FlightRadar.Core.Models.V1.Filters;
 using FlightRadar.Entities.Models.V1;
 
 namespace FlightRadar.Tests.FilterTests.V1;
@@ -11,7 +11,7 @@ public class FlightPositionsFilterTests
         // Arrange
         var filter = new FlightPositionsFilter
         {
-            Bounds = [10.123, 20.456, 30.789, 40.012],
+            Bounds = new BoundingBox(10.123, 20.456, 30.789, 40.012),
             Flights = ["AB123", "XY456"],
             Callsigns = ["CALL123", "CALL456"],
             Registrations = ["REG123"],
@@ -130,7 +130,7 @@ public class FlightPositionsFilterTests
         // Arrange
         var filter = new FlightPositionsFilter
         {
-            Bounds = [10.123, 20.456, 30.789, 40.012]
+            Bounds = new BoundingBox(10.123, 20.456, 30.789, 40.012)
         };
 
         // Act

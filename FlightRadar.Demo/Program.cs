@@ -1,5 +1,5 @@
 ﻿using FlightRadar.Client;
-using FlightRadar.Client.Models.V1;
+using FlightRadar.Core.Models.V1.Filters;
 
 namespace FlightRadar.Demo;
 
@@ -12,7 +12,7 @@ class FlightRadarDemo
         //
         // Use Airlines Light Endpoint
         //
-        var airline = await flightRadarClient.V1.GetAirlineInfoByIcaoAsync("AAL");
+        var airline = await flightRadarClient.V1.Airlines.GetByIcaoCodeAsync("AAL");
         Console.WriteLine($"Airline: {airline?.Name}");
         // Output: Airline: American Airlines
         
@@ -20,7 +20,7 @@ class FlightRadarDemo
         //
         // Use Airports Full Endpoint
         //
-        var airportDetailed = await flightRadarClient.V1.GetDetailedAirportInfoByCodeAsync("ESSA");
+        var airportDetailed = await flightRadarClient.V1.Airports.GetFullByCodeAsync("ESSA");
         Console.WriteLine($"Airport: {airportDetailed?.Name}");
         // Output: Airport: Stockholm Arlanda Airport
         
@@ -28,7 +28,7 @@ class FlightRadarDemo
         //
         // Use Airports Light Endpoint
         //
-        var airport = await flightRadarClient.V1.GetAirportInfoByCodeAsync("ESSA");
+        var airport = await flightRadarClient.V1.Airports.GetByCodeAsync("ESSA");
         Console.WriteLine($"Airport: {airport?.Name}");
         // Output: Airport: Stockholm Arlanda Airport
         
@@ -36,29 +36,29 @@ class FlightRadarDemo
         //
         // Use Full Flight Positions Endpoint
         //
-        var fullFlightPositions = await flightRadarClient.V1.GetFullFlightPositionsAsync(new FlightPositionsFilter()
+        var fullFlightPositions = await flightRadarClient.V1.FlightPositions.GetFullAsync(new FlightPositionsFilter()
         {
             Callsigns = ["AFR1463"]
         });
-        Console.WriteLine($"Flight Altitude: {fullFlightPositions?.First().Altitude}");
+        Console.WriteLine($"Flight Altitude: {fullFlightPositions.First().Altitude}");
         // Output: Flight Altitude: 37000
         
         
         //
         // Use Light Flight Positions Endpoint
         //
-        var lightFlightPositions = await flightRadarClient.V1.GetFlightPositionsAsync(new FlightPositionsFilter()
+        var lightFlightPositions = await flightRadarClient.V1.FlightPositions.GetAsync(new FlightPositionsFilter()
         {
             Callsigns = ["AFR1463"]
         });
-        Console.WriteLine($"Flight Altitude: {lightFlightPositions?.First().Altitude}");
+        Console.WriteLine($"Flight Altitude: {lightFlightPositions.First().Altitude}");
         // Output: Flight Altitude: 40000
         
         
         //
         // Use Flight Positions Count Endpoint
         //
-        var flightPositionsCount = await flightRadarClient.V1.GetFlightPositionsCountAsync(new FlightPositionsFilter()
+        var flightPositionsCount = await flightRadarClient.V1.FlightPositions.GetCountAsync(new FlightPositionsFilter()
         {
             Callsigns = ["AFR1463"]
         });
@@ -69,31 +69,31 @@ class FlightRadarDemo
         //
         // Use Full Historic Flight Positions Endpoint
         //
-        var fullHistoricFlightPositions = await flightRadarClient.V1.GetFullHistoricFlightPositionsAsync(new HistoricFlightPositionFilter()
+        var fullHistoricFlightPositions = await flightRadarClient.V1.HistoricFlightPositions.GetFullAsync(new HistoricFlightPositionFilter()
         {
             Timestamp = new DateTime(2024, 1, 1),
             Callsigns = ["AFR1463"]
         });
-        Console.WriteLine($"Flight Altitude: {fullHistoricFlightPositions?.First().Altitude}");
+        Console.WriteLine($"Flight Altitude: {fullHistoricFlightPositions.First().Altitude}");
         // Output: Flight Altitude: 37000
         
         
         //
         // Use Light Historic Flight Positions Endpoint
         //
-        var lightHistoricFlightPositions = await flightRadarClient.V1.GetHistoricFlightPositionsAsync(new HistoricFlightPositionFilter()
+        var lightHistoricFlightPositions = await flightRadarClient.V1.HistoricFlightPositions.GetAsync(new HistoricFlightPositionFilter()
         {
             Timestamp = new DateTime(2024, 1, 1),
             Callsigns = ["AFR1463"]
         });
-        Console.WriteLine($"Flight Altitude: {lightHistoricFlightPositions?.First().Altitude}");
+        Console.WriteLine($"Flight Altitude: {lightHistoricFlightPositions.First().Altitude}");
         // Output: Flight Altitude: 40000
         
         
         //
         // Use Flight Historic Positions Count Endpoint
         //
-        var flightHistoricPositionsCount = await flightRadarClient.V1.GetHistoricFlightPositionsCountAsync(new HistoricFlightPositionFilter()
+        var flightHistoricPositionsCount = await flightRadarClient.V1.HistoricFlightPositions.GetCountAsync(new HistoricFlightPositionFilter()
         {
             Timestamp = new DateTime(2024, 1, 1),
             Callsigns = ["AFR1463"]
@@ -106,31 +106,31 @@ class FlightRadarDemo
         //
         // Use Full Flight Summary Endpoint
         //
-        var fullFlightSummary = await flightRadarClient.V1.GetFullFlightSummaryAsync(new FlightSummaryFilter()
+        var fullFlightSummary = await flightRadarClient.V1.FlightSummaries.GetFullAsync(new FlightSummaryFilter()
         {
             FlightIds = ["380ce8ef"],
             Flights = ["SK1415"]
         });
-        Console.WriteLine($"Flight Callsign: {fullFlightSummary?.First().Callsign}");
+        Console.WriteLine($"Flight Callsign: {fullFlightSummary.First().Callsign}");
         // Output: Flight Altitude: 37000
         
         
         //
         // Use Light Flight Summary Endpoint
         //
-        var lightFlightSummary = await flightRadarClient.V1.GetFlightSummaryAsync(new FlightSummaryFilter()
+        var lightFlightSummary = await flightRadarClient.V1.FlightSummaries.GetAsync(new FlightSummaryFilter()
         {
             FlightIds = ["380ce8ef"],
             Flights = ["SK1415"]
         });
-        Console.WriteLine($"Flight: {lightFlightSummary?.First().FlightNumber}");
+        Console.WriteLine($"Flight: {lightFlightSummary.First().FlightNumber}");
         // Output: Flight Altitude: 40000
         
         
         //
         // Use Flight Summary Count Endpoint
         //
-        var flightSummaryCount = await flightRadarClient.V1.GetFlightSummaryCountAsync(new FlightSummaryFilter()
+        var flightSummaryCount = await flightRadarClient.V1.FlightSummaries.GetCountAsync(new FlightSummaryFilter()
         {
             FlightIds = ["380ce8ef"],
             Flights = ["SK1415"]
@@ -144,7 +144,7 @@ class FlightRadarDemo
         //
         // Use Flight Tracks Endpoint
         //
-        var flightTracks = await flightRadarClient.V1.GetFlightTracksByFlightIdAsync("34242a02");
+        var flightTracks = await flightRadarClient.V1.FlightTracks.GetByFlightIdAsync("34242a02");
         Console.WriteLine($"FlightTrack Source: {flightTracks?.First().Tracks.First().Source}");
         // Output: FlightTrack Source: MLAT
         
@@ -152,8 +152,8 @@ class FlightRadarDemo
         //
         // Use Flight Tracks Endpoint
         //
-        var usage = await flightRadarClient.V1.GetApiUsageAsync(TimePeriod.Last24Hours);
-        Console.WriteLine($"Used: {usage?.First().Endpoint} {usage?.First().RequestCount} times");
+        var usage = await flightRadarClient.V1.Usage.GetAsync(TimePeriod.Last24Hours);
+        Console.WriteLine($"Used: {usage.First().Endpoint} {usage.First().RequestCount} times");
         // Output: Used: airports/{code} 5 times
     }
 }

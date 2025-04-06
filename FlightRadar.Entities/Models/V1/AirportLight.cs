@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace FlightRadar.Entities.Models.V1;
 
 public class AirportLight
@@ -7,18 +5,7 @@ public class AirportLight
     /// <summary>
     /// Name of the airport.
     /// </summary>
-    [JsonPropertyName("name")]
     public string? Name { get; set; }
-
-    /// <summary>
-    /// Airport IATA code.
-    /// </summary>
-    [JsonPropertyName("iata")]
-    public string? IataCode { get; set; }
-
-    /// <summary>
-    /// Airport ICAO code.
-    /// </summary>
-    [JsonPropertyName("icao")]
-    public required string IcaoCode { get; set; }
+    
+    public required Code Code { get; set; }
 }

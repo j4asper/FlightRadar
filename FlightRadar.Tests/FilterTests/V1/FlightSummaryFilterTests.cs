@@ -1,4 +1,4 @@
-using FlightRadar.Client.Models.V1;
+using FlightRadar.Core.Models.V1.Filters;
 
 namespace FlightRadar.Tests.FilterTests.V1;
 

@@ -1,4 +1,4 @@
-using FlightRadar.Client.Models.V1;
+using FlightRadar.Core.Models.V1.Filters;
 
 namespace FlightRadar.Tests.FilterTests.V1;
 
@@ -11,7 +11,7 @@ public class HistoricFlightPositionFilterTests
         var filter = new HistoricFlightPositionFilter
         {
             Timestamp = new DateTime(2023, 4, 5, 14, 30, 0, DateTimeKind.Utc),
-            Bounds = [10.123, 20.456, 30.789, 40.012],
+            Bounds = new BoundingBox(10.123, 20.456, 30.789, 40.012),
             Flights = ["AB123"],
             Callsigns = ["CALL123"],
             Limit = 100
